@@ -8,7 +8,17 @@ let usuarios = [
         id: 2,
         username: 'root',
         password: 'root',
-    }
+    },
+    {
+        id: 3,
+        username: 'Fran',
+        password: '1234',
+    },
+    {
+        id: 4,
+        username: 'Prueba32',
+        password: 'Clave32',
+    },
 ]
 
 const generarId = ()=>{
@@ -44,10 +54,22 @@ const createUser = (req , res) =>{
 
 
 const updateUser = (req , res) =>{
+    const actualizar = req.body
+    const  id = req.params.id
+    const index = usuarios.findIndex ( x => x.id == id)
+    
+    const modificarUsuario = usuarios[index]
+    Object.assign(modificarUsuario , actualizar)
+    res.send(usuarios)
+
 
 }
 
 const deleteUser = (req , res) =>{
+    const  id = req.params.id
+    const index = usuarios.findIndex ( x => x.id == id)
+    usuarios.splice(index,1)
+    res.send("User Delete")
 
 }
 
